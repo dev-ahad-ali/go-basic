@@ -2,26 +2,38 @@ package main
 
 import "fmt"
 
-func processOperation(a int, b int, op func(p int, q int)) {
-	op(a, b)
+const a = 10
+
+var p = 100
+
+func outer() func() {
+	money := 100
+	age := 30
+
+	fmt.Println("Age =", age)
+
+	show := func() {
+		money = money + a + p
+		fmt.Println(money)
+	}
+
+	return show
 }
 
-func call() func(x int, y int) {
-	return add
-}
+func call() {
+	incr1 := outer()
+	incr1()
+	incr1()
 
-func add(x int, y int) {
-	z := x + y
-	fmt.Println(z)
+	incr2 := outer()
+	incr2()
+	incr2()
 }
 
 func main() {
-	// higher order function
-	processOperation(2, 5, add)
-	sum := call() // function expression
-	sum(2, 8)
+	call()
 }
 
 func init() {
-	fmt.Println("This will be invoked first")
+	fmt.Println("=== Bank ===")
 }
