@@ -10,15 +10,18 @@ func init() {
 	fmt.Println("System Initialized... Bank")
 }
 
-// 'outer' function takes an initial amount (money) and another variable (e.g., bonus).
+// 'outer' function takes an initial amount (money) and another variable (bonus).
 // It returns an anonymous function of type `func(int) int` which acts as our closure.
 func outer(money int, bonus int) func(int) int {
 
-	// This anonymous function is the closure.
-	// It captures 'money' and 'bonus' from the outer function's scope.
+	// ESCAPE ANALYSIS IN ACTION:
+	// Normally, 'money' and 'bonus' would be placed on the Stack Frame of outer().
+	// But because this anonymous function uses them and is returned to the outside world,
+	// the compiler moves 'money' and 'bonus' to the HEAP.
 	return func(expense int) int {
+
 		// We manipulate the captured 'money' variable.
-		// The state is remembered across multiple calls.
+		// Because it lives on the Heap, its state is remembered across multiple calls.
 		money = (money + bonus) - expense
 
 		// It also has access to package-level constants like 'p'
@@ -31,7 +34,7 @@ func outer(money int, bonus int) func(int) int {
 func main() {
 	// We call 'outer' and it returns the inner anonymous function (the closure).
 	// The 'show' variable now holds this closure function.
-	// The state of 'money' (initialized to 1000) and 'bonus' (200) is preserved.
+	// The state of 'money' (initialized to 1000) and 'bonus' (200) is preserved on the Heap.
 	show := outer(1000, 200)
 
 	// Calling the closure for the first time
