@@ -2,13 +2,15 @@ package main
 
 import "fmt"
 
-func main() {
-	var arr [2]int
+var globalArr = [3]string{"Hello", "World", "!"}
 
-	arr[1] = 6
-	arr[0] = 3
+func main() {
+	arr := [2]int{3, 6}
 
 	fmt.Println(arr)
+
+	fmt.Println(globalArr[1])
+	fmt.Println(globalArr)
 }
 
 func init() {
