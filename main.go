@@ -2,34 +2,63 @@ package main
 
 import "fmt"
 
-func print(numbers *[3]int) {
-	fmt.Println(numbers)
+// Employee defines a custom data structure
+type Employee struct {
+	Name   string
+	Salary int
 }
 
-// type User struct {
-// 	Name   string
-// 	Age    int
-// 	Salary float64
-// }
+// modifyStructByValue receives a completely independent copy of the struct.
+// Changes made inside this function will not affect the original instance.
+func modifyStructByValue(emp Employee) {
+	emp.Salary = 90000
+	emp.Name = "Modified Copy"
+}
+
+// modifyStructByPointer receives the exact memory address of the struct.
+// Changes made here update the original data structure directly.
+func modifyStructByPointer(empPtr *Employee) {
+	// Go automatically dereferences the pointer under the hood.
+	// We do not need to write (*empPtr).Salary
+	empPtr.Salary = 90000
+	empPtr.Name = "Habib (Promoted)"
+}
 
 func main() {
-	// pointer or address of memory (ram)
-	x := 10
+	// 1. Basic Primitive Pointer Operations
+	x := 20
+	var p *int = &x
 
-	fmt.Println("x = ", x) // x = 20
+	fmt.Println("Initial value of x:", x)
+	fmt.Println("Memory address of x:", p)
 
-	p := &x // ampersand & => address of
+	*p = 50
+	fmt.Println("Value of x after pointer mutation (*p = 50):", x)
 
-	*p = 30
+	fmt.Println("--------------------------------------------------")
 
-	fmt.Println("x = ", x)
-	fmt.Println("Address: ", p)              // p is the address of x
-	fmt.Println("Value at the address:", *p) // * =>  value at address
+	// 2. Struct Operations: Pass-by-Value vs. Pass-by-Pointer
+	// Initialize a new Employee struct instance
+	emp1 := Employee{
+		Name:   "Habib",
+		Salary: 50000,
+	}
 
-	arr := [3]int{1, 2, 3}
-	print(&arr)
-}
+	fmt.Println("Original Struct State:")
+	fmt.Printf("Name: %s, Salary: %d\n", emp1.Name, emp1.Salary)
+	fmt.Println("Memory address of emp1:", &emp1)
 
-func init() {
-	fmt.Println("This will be invoked first")
+	fmt.Println("--------------------------------------------------")
+
+	// Attempting to modify the struct by passing it by value
+	modifyStructByValue(emp1)
+	fmt.Println("Struct State after modifyStructByValue(emp1):")
+	fmt.Printf("Name: %s, Salary: %d\n", emp1.Name, emp1.Salary) // Unchanged
+
+	fmt.Println("--------------------------------------------------")
+
+	// Successfully modifying the struct by passing its memory address
+	modifyStructByPointer(&emp1)
+	fmt.Println("Struct State after modifyStructByPointer(&emp1):")
+	fmt.Printf("Name: %s, Salary: %d\n", emp1.Name, emp1.Salary) // Successfully changed
 }
