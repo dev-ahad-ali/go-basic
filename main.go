@@ -2,24 +2,32 @@ package main
 
 import "fmt"
 
-func processOperation(a int, b int, op func(p int, q int)) {
-	op(a, b)
+func print(numbers *[3]int) {
+	fmt.Println(numbers)
 }
 
-func call() func(x int, y int) {
-	return add
-}
-
-func add(x int, y int) {
-	z := x + y
-	fmt.Println(z)
-}
+// type User struct {
+// 	Name   string
+// 	Age    int
+// 	Salary float64
+// }
 
 func main() {
-	// higher order function
-	processOperation(2, 5, add)
-	sum := call() // function expression
-	sum(2, 8)
+	// pointer or address of memory (ram)
+	x := 10
+
+	fmt.Println("x = ", x) // x = 20
+
+	p := &x // ampersand & => address of
+
+	*p = 30
+
+	fmt.Println("x = ", x)
+	fmt.Println("Address: ", p)              // p is the address of x
+	fmt.Println("Value at the address:", *p) // * =>  value at address
+
+	arr := [3]int{1, 2, 3}
+	print(&arr)
 }
 
 func init() {
