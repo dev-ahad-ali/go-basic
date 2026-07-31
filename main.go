@@ -13,6 +13,29 @@ func main() {
 	fmt.Println(s1)
 	fmt.Println(len(s1))
 	fmt.Println(cap(s1))
+
+	sl := []int{1, 2, 3} // slice literal
+	fmt.Println("Slice:", sl, "len:", len(sl), "capacity:", cap(sl))
+
+	sm := make([]int, 3) // [0, 0, 0], len = 3,  cap = 3
+	sm[0] = 5            // [5, 0, 0], len = 3,  cap = 3
+
+	fmt.Println(sm)
+	fmt.Println(len(sm))
+	fmt.Println(cap(sm))
+
+	sm1 := make([]int, 3, 5) // [0, 0, 0], len = 3, cap = 5
+	sm1[0] = 5               // [5, 0, 0], len = 3,  cap = 5
+	sm1[2] = 10              // [5, 0, 10], len = 3,  cap = 5
+
+	fmt.Println(sm1)
+	fmt.Println(len(sm1))
+	fmt.Println(cap(sm1))
+
+	var sn []int             // empty slice or nil slice []
+	sn = append(sn, 1, 2, 3) // [1]
+	fmt.Println(sn)
+
 }
 
 func init() {
