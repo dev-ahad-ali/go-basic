@@ -36,6 +36,21 @@ func main() {
 	sn = append(sn, 1, 2, 3) // [1]
 	fmt.Println(sn)
 
+	// interview examples
+	var x []int      // [], len = 0, cap = 0
+	x = append(x, 1) // [], len = 0, cap = 0
+	x = append(x, 2)
+	x = append(x, 3)
+
+	y := x
+
+	x = append(x, 4)
+	y = append(y, 4)
+
+	x[0] = 10
+
+	fmt.Println(x)
+	fmt.Println(y)
 }
 
 func init() {
