@@ -8,6 +8,13 @@ func changeSlice(n []int) []int {
 	return n
 }
 
+// variadic function
+func print(numbers ...int) {
+	fmt.Println(numbers)
+	fmt.Println(len(numbers))
+	fmt.Println(cap(numbers))
+}
+
 func main() {
 	arr := [6]string{"This", "is", "a", "GO", "interview", "question"}
 	fmt.Println(arr)
@@ -69,6 +76,8 @@ func main() {
 	fmt.Println(p)      // [1, 2, 3, 4, 10, 6, 7]
 	fmt.Println(q)      // [10, 6, 7, 11]
 	fmt.Println(p[0:8]) // [1, 2, 3, 4, 10, 6, 7, 11]
+
+	print(4, 53, 5, 3, 2, 5)
 }
 
 func init() {
