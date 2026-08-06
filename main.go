@@ -2,6 +2,12 @@ package main
 
 import "fmt"
 
+func changeSlice(n []int) []int {
+	n[0] = 10
+	n = append(n, 11)
+	return n
+}
+
 func main() {
 	arr := [6]string{"This", "is", "a", "GO", "interview", "question"}
 	fmt.Println(arr)
@@ -51,6 +57,18 @@ func main() {
 
 	fmt.Println(x) // [10, 2, 3, 5]
 	fmt.Println(y) // [10, 2, 3, 5]
+
+	p := []int{1, 2, 3, 4, 5}
+	p = append(p, 6)
+	p = append(p, 7)
+
+	l := p[4:]
+
+	q := changeSlice(l)
+
+	fmt.Println(p)
+	fmt.Println(q)
+
 }
 
 func init() {
