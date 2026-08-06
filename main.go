@@ -66,8 +66,8 @@ func main() {
 
 	q := changeSlice(l)
 
-	fmt.Println(p)
-	fmt.Println(q)
+	fmt.Println(p) // [1, 2, 3, 4, 10, 6, 7]
+	fmt.Println(q) // [10, 6, 7, 11]
 
 }
 
