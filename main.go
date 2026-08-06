@@ -38,19 +38,19 @@ func main() {
 
 	// interview examples
 	var x []int      // [], len = 0, cap = 0
-	x = append(x, 1) // [], len = 0, cap = 0
-	x = append(x, 2)
+	x = append(x, 1) // [1], len = 1, cap = 1
+	x = append(x, 2) // [1,2], len = 2 , cap = 2
 	x = append(x, 3)
 
 	y := x
 
 	x = append(x, 4)
-	y = append(y, 4)
+	y = append(y, 5)
 
 	x[0] = 10
 
-	fmt.Println(x)
-	fmt.Println(y)
+	fmt.Println(x) // [10, 2, 3, 5]
+	fmt.Println(y) // [10, 2, 3, 5]
 }
 
 func init() {
