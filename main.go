@@ -2,26 +2,29 @@ package main
 
 import "fmt"
 
-func processOperation(a int, b int, op func(p int, q int)) {
-	op(a, b)
-}
+// func a() {
+// 	i := 0 // 0
 
-func call() func(x int, y int) {
-	return add
-}
+// 	fmt.Println("first", i) // 0
 
-func add(x int, y int) {
-	z := x + y
-	fmt.Println(z)
+// 	defer fmt.Println("second", i) //  fmt.Println("second", 0)
+
+// 	i = i + 1 // i++ // 1
+
+// 	fmt.Println("third", i) // 1
+
+// 	defer fmt.Println("fourth", i) //  fmt.Println("second", 0)
+
+// }
+
+func sum(a int, b int) (result int) {
+	result = a + b
+
+	return
 }
 
 func main() {
-	// higher order function
-	processOperation(2, 5, add)
-	sum := call() // function expression
-	sum(2, 8)
-}
+	res := sum(3, 4)
 
-func init() {
-	fmt.Println("This will be invoked first")
+	fmt.Println(res)
 }
