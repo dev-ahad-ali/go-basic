@@ -17,14 +17,41 @@ import "fmt"
 
 // }
 
-func sum(a int, b int) (result int) {
-	result = a + b
+func calculate() (result int) {
+	fmt.Println("first", result)
+
+	defer func() {
+		result = result + 10
+		fmt.Println("defer", result)
+	}()
+
+	result = 5
+	fmt.Println("second", result)
 
 	return
 }
 
-func main() {
-	res := sum(3, 4)
+func calc() int {
+	result := 0
+	fmt.Println("first", result)
 
-	fmt.Println(res)
+	show := func() {
+		result = result + 10
+		fmt.Println("defer", result)
+	}
+
+	defer show()
+
+	result = 5
+	fmt.Println("second", result)
+
+	return result
+}
+
+func main() {
+	a := calculate()
+	b := calc()
+
+	fmt.Println("main first", a)
+	fmt.Println("main second", b)
 }
